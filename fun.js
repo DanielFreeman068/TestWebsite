@@ -21,6 +21,6 @@ function generateRandomInsult() {
 }
 
 let x = prompt("Are you Stupid?")
-while (x != "Yes"){
+while (str.toLowerCase(x) != "yes"){
     x = prompt("Are you Stupid?")
 }
