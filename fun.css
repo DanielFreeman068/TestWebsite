@@ -1,0 +1,43 @@
+html{
+    font-family:'Courier New', Courier, monospace;
+}
+
+li{
+    display: inline-block;
+    padding: 40px;
+    transform: rotate(90deg);;
+    transition: transform .5s;
+}
+
+a{
+    color:white;
+    border-style:solid;
+    border-radius:25px;
+    padding:20px;
+    font-size:x-large;
+}
+
+nav{
+    float:right;
+    transform:rotate(-90deg) translateY(-100%);
+    transform-origin: top right;
+    border-style:solid;
+    border-radius: 25px;
+    padding:15px;
+    overflow:hidden;
+    position:fixed;
+    top:5%;
+    right:5%;
+}
+
+a:hover{
+    color:aqua;
+}
+
+li:hover{
+    transform: rotate(1170deg);
+}
+
+p{
+    font-size:large;
+}
