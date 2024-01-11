@@ -41,3 +41,26 @@ li:hover{
 p{
     font-size:large;
 }
+
+.questionDiv{
+    display:flex;
+    justify-content: center;
+    font-size:xx-large;
+    font-family:'Courier New', Courier, monospace;
+    color:coral;
+}
+
+.question{
+    padding:20px;
+    border-radius:25px;
+    border-style:solid;
+    color:black;
+    background-color: black;
+    font-family:'Courier New', Courier, monospace;
+    font-size:large;
+}
+
+button:hover{
+    background-color:lightcoral;
+    transition: background-color 3s ;
+}
