@@ -20,7 +20,7 @@ function generateRandomInsult() {
     return randomInsult;
 }
 
-let x = prompt("Are you Stupid?")
-while (str.toLowerCase(x) != "yes"){
+let x = prompt("Are you Stupid? yes or no")
+while (x != "yes"){
     x = prompt("Are you Stupid?");
 }
