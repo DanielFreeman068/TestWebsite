@@ -180,3 +180,48 @@ input[type="submit"]:active
 		height: calc(20vw - 2px);
 	}
 }
+
+
+li{
+    display: inline-block;
+    padding: 20px;
+    transform: rotate(90deg);;
+    transition: transform .5s;
+}
+
+.gerb a{
+    color:hotpink;
+    border-style:solid;
+    border-radius:25px;
+    padding:20px;
+    font-size:x-large;
+    box-shadow: 0px 0px 10px #ff00f2,
+    0px 0px 10px #ff00f2 inset;
+    border:2px solid #ff00f7;
+}
+
+.gerb{
+    float:right;
+    transform:rotate(-90deg) translateY(-100%);
+    transform-origin: top right;
+    border-style:solid;
+    border-radius: 25px;
+    padding:35px;
+    overflow:hidden;
+    position:fixed;
+    top:5%;
+    right:5%;
+    box-shadow: 0px 0px 10px #ff00f2,
+    0px 0px 10px #ff00f2 inset;
+    border:2px solid #ff00f7;
+    z-index: 1000;
+    margin-top:100px;
+}
+
+a:hover{
+    color:aqua;
+}
+
+li:hover{
+    transform: rotate(1170deg);
+}
