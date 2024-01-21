@@ -20,7 +20,7 @@ function generateRandomInsult() {
     return randomInsult;
 }
 
-let x = prompt("Are you Stupid? yes or no")
-while (x != "yes"){
-    x = prompt("Are you Stupid?");
-}
+const checkbox = document.getElementById("checkbox")
+checkbox.addEventListener("change", () => {
+  document.body.classList.toggle("dark")
+})

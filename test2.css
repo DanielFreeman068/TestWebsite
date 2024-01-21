@@ -1,0 +1,195 @@
+h1{
+    background: linear-gradient(90deg, #00ffff, #ff00c3);
+    -webkit-background-clip: text;
+    background-clip:text;
+    -webkit-text-fill-color: transparent;
+    font-size: 100px;;
+    justify-content: center;
+    display:flex;
+    box-shadow: 0px 0px 10px #ff00f2,
+    0px 0px 10px #ff00f2 inset;
+    border:2px solid #ff00f7;
+}
+
+html{
+    background: black;
+    margin-top:5px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat";
+  }
+  body {
+    align-items: center;
+    min-height: 100vh;
+    background: #111;
+  }
+  .scan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .scan .hand {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    /* background: url(hand_02.png); */
+    background: url(http://codingstella.com/wp-content/uploads/2024/01/download-10.png);
+    background-size: 500px;
+  }
+  .scan .hand::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: url(hand_01.png); */
+    background: url(http://codingstella.com/wp-content/uploads/2024/01/download-11.png);
+    background-size: 500px;
+    animation: animate 4s ease-in-out infinite;
+  }
+  @keyframes animate {
+    0%,
+    100% {
+      height: 0%;
+    }
+    50% {
+      height: 100%;
+    }
+  }
+  .scan .hand::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #3fefef;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 20px #3fefef) drop-shadow(0 0 60px #3fefef);
+    animation: animateLines 4s ease-in-out infinite;
+  }
+  @keyframes animateLines {
+    0%,
+    100% {
+      top: 0%;
+    }
+    50% {
+      top: 100%;
+    }
+  }
+  
+  .scan h3 {
+    text-transform: uppercase;
+    font-size: 2em;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    color: #3fefef;
+    filter: drop-shadow(0 0 20px #3fefef) drop-shadow(0 0 60px #3fefef);
+    animation: animateText 0.5s steps(1) infinite;
+  }
+  @keyframes animateText {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  .scan .hand .lines {
+    position: absolute;
+    inset: 0;
+  }
+  .scan .hand .lines::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    /* background: url(lines.png); */
+    background: url(http://codingstella.com/wp-content/uploads/2024/01/download-12.png);
+    background-size: 500px;
+    animation: handLines 4s ease-in-out infinite;
+  }
+  @keyframes handLines {
+    0%,
+    25%,
+    100% {
+      height: 0;
+    }
+    50% {
+      height: 100%;
+    }
+  }
+  .scan .hand .lines::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    /* background: url(points.png); */
+    background: url(http://codingstella.com/wp-content/uploads/2024/01/download-13.png);
+    background-size: 500px;
+    animation: handPoints 4s ease-in-out infinite;
+  }
+  @keyframes handPoints {
+    0%,
+    100% {
+      height: 0;
+    }
+    50% {
+      height: 100%;
+    }
+  }
+
+li{
+    display: inline-block;
+    padding: 20px;
+    transform: rotate(90deg);;
+    transition: transform .5s;
+}
+
+a{
+    color:hotpink;
+    border-style:solid;
+    border-radius:25px;
+    padding:20px;
+    font-size:x-large;
+    box-shadow: 0px 0px 10px #ff00f2,
+    0px 0px 10px #ff00f2 inset;
+    border:2px solid #ff00f7;
+}
+
+nav{
+    float:right;
+    transform:rotate(-90deg) translateY(-100%);
+    transform-origin: top right;
+    border-style:solid;
+    border-radius: 25px;
+    padding:35px;
+    overflow:hidden;
+    position:fixed;
+    top:5%;
+    right:5%;
+    box-shadow: 0px 0px 10px #ff00f2,
+    0px 0px 10px #ff00f2 inset;
+    border:2px solid #ff00f7;
+    z-index: 1000;
+    margin-top:100px;
+}
+
+a:hover{
+    color:aqua;
+}
+
+li:hover{
+    transform: rotate(1170deg);
+}
