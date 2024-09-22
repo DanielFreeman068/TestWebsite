@@ -2,14 +2,14 @@ console.log("test");
 
 document.addEventListener("DOMContentLoaded", showPieChart);
 
+let sliceA = { size:550, color:'blue' };
+let sliceB = { size:220, color:'green' };
+let sliceC = { size:930, color:'red' };
+
 function showPieChart() {
     console.log("pie-chart on load");
 
-    let sliceA = { size:550, color:'blue' };
-    let sliceB = { size:220, color:'green' };
-    let sliceC = { size:930, color:'red' };
-
-    const values = [sliceA.size, sliceB.size, sliceC.size];
+    let values = [sliceA.size, sliceB.size, sliceC.size];
     
     const total = values.reduce((acc, val) => acc + val, 0);
 
@@ -76,3 +76,10 @@ function showPieChart() {
     </div>
     `;
 }
+
+function addAmount(slice, amount){
+    slice.size += amount;
+    showPieChart();
+}
+
+// addAmount(sliceB, 200)
