@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", showPieChart);
 
 let sliceA = { size:550, color:'blue' };
 let sliceB = { size:220, color:'green' };
-let sliceC = { size:930, color:'red' };
+let sliceC = { size:930, color:'pink' };
 
 function showPieChart() {
     console.log("pie-chart on load");
@@ -82,4 +82,4 @@ function addAmount(slice, amount){
     showPieChart();
 }
 
-// addAmount(sliceB, 200)
+addAmount(sliceC, 1000)
