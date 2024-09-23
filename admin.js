@@ -1,10 +1,11 @@
 var ctx = document.getElementById('lineChart').getContext('2d');
 
-// Sample monthly data
+//All of my basic data
 var allData = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [{
         label: 'Earnings in $',
+        // Sample monthly data
         data: [2050, 1900, 2100, 1800, 2800, 2000, 2500, 2600, 2450, 1950, 2300, 2900],
         backgroundColor: 'rgba(85, 85, 85, 1)',
         borderColor: 'rgba(41, 155, 99)',
@@ -12,21 +13,26 @@ var allData = {
     }]
 };
 
-// Daily earnings based on expenses and incomes
-var dailyEarnings = [
-    100, 120, 150, 100, 200, 170, 180,
-    190, 210, 220, 230, 240, 250, 260,
-    270, 280, 290, 300, 310, 320, 330,
-    340, 350, 360, 370, 380, 390, 400,
-    410, 420, 430
-];
+// Simulating fetching JSON data for septemberAmounts
+var jsonData = `{
+    "septemberAmounts": [
+        100, 120, 150, 100, 230, 170, 300, 190, 250, 210, 
+        280, 240, 200, 260, 265, 280, 240, 300, 210, 230, 
+        230, 340, 150, 140, 260, 180, 190, 230, 210, 420
+    ]
+}`;
 
-// const totalEarnings = dailyEarnings.reduce((total, dailyEarning) => total + dailyEarning, 0);
-// allData.datasets[0].data.push(totalEarnings);
-// allData.datasets[0].data.shift();
-// Add the total earnings to the data array
-// filteredData = [...earningsForTheMonth, totalEarnings]; // Append total earnings to the data array
+// Parse the JSON data
+var parsedData = JSON.parse(jsonData);
+var septemberAmounts = parsedData.septemberAmounts;
 
+//takes the daily earnings and sets it to the current months amount
+const currentDate = new Date();
+const currentMonth = currentDate.getMonth();
+const totalEarnings = septemberAmounts.reduce((total, septemberAmounts) => total + septemberAmounts, 0);
+allData.datasets[0].data[currentMonth] = totalEarnings;
+
+//uses allData for a chart where plugins - tooltip customizes the behavior of the tooltip and the callback function is executed when tooltip is displayed
 var myChart = new Chart(ctx, {
     type: 'line',
     data: allData,
@@ -37,7 +43,7 @@ var myChart = new Chart(ctx, {
                 callbacks: {
                     label: function(tooltipItem) {
                         const currentEarnings = tooltipItem.raw;
-                        const previousEarnings = getPreviousEarnings(tooltipItem.label);
+                        const previousEarnings = getPreviousEarnings(tooltipItem.label);//tool tip item contains info on the current hovered point. tooltipitem.raw is just the data which in this case is the dollar amount
                         const difference = currentEarnings - previousEarnings;
                         return [
                             `Earnings: $${currentEarnings}`,
@@ -81,7 +87,7 @@ function filterData(timeFrame) {
             month.push(allData.labels[currentMonth]);
             const daysInMonth = new Date(year, currentMonth + 1, 0).getDate();
             filteredLabels = Array.from({ length: daysInMonth }, (_, index) => `${month} ${index + 1}`);
-            filteredData = dailyEarnings.slice(0, daysInMonth);
+            filteredData = septemberAmounts.slice(0, daysInMonth);
             break;  
     }
 
@@ -95,13 +101,12 @@ function filterData(timeFrame) {
 function getPreviousEarnings(currentLabel) {
     const index = allData.labels.indexOf(currentLabel);
     if (index > 0) {
-        return allData.datasets[0].data[index - 1]; // Return previous earnings
+        return allData.datasets[0].data[index - 1];
     }
-    return 0; // Return 0 if no previous earnings
+    return 0;
 }
 
-// Example usage
-filterData('last_12_months'); // Call this to filter by last 12 months
+filterData('last_1_month');
 
 
 
