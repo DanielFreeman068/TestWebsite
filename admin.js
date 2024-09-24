@@ -228,26 +228,97 @@ filterData('last_1_month');
 //     new Chart(ctx, config);
 // };
 
-document.addEventListener("DOMContentLoaded", showPieChart);
+// document.addEventListener("DOMContentLoaded", showPieChart);
 
-// Defining the slices with sizes and colors
-let sliceA = { size: 400, color: 'limegreen', label: 'Home & Utilities' };
-let sliceB = { size: 150, color: 'green', label: 'Transportation' };
-let sliceC = { size: 250, color: 'darkgreen', label: 'Groceries' };
-let sliceD = { size: 180, color: 'darkolivegreen', label: 'Health' };
-let sliceE = { size: 220, color: 'yellow', label: 'Restaurants & Dining' };
-let sliceF = { size: 300, color: 'orange', label: 'Shopping & Entertainment' };
-let sliceG = { size: 120, color: 'chocolate', label: 'Cash, Checks & Misc' };
+// // Defining the slices with sizes and colors
+// let sliceA = { size: 400, color: 'limegreen', label: 'Home & Utilities' };
+// let sliceB = { size: 150, color: 'green', label: 'Transportation' };
+// let sliceC = { size: 250, color: 'darkgreen', label: 'Groceries' };
+// let sliceD = { size: 180, color: 'darkolivegreen', label: 'Health' };
+// let sliceE = { size: 220, color: 'yellow', label: 'Restaurants & Dining' };
+// let sliceF = { size: 300, color: 'orange', label: 'Shopping & Entertainment' };
+// let sliceG = { size: 120, color: 'chocolate', label: 'Cash, Checks & Misc' };
 
-function showPieChart() {
-    console.log("pie-chart on load");
+// function showPieChart() {
+//     console.log("pie-chart on load");
 
-    let slices = [sliceA, sliceB, sliceC, sliceD, sliceE, sliceF, sliceG];
+//     let slices = [sliceA, sliceB, sliceC, sliceD, sliceE, sliceF, sliceG];
     
-    const total = slices.reduce((acc, slice) => acc + slice.size, 0); //this gets all the sizes total amount
+//     const total = slices.reduce((acc, slice) => acc + slice.size, 0); //this gets all the sizes total amount
+//     let startAngle = 0;
+
+//     const canvas = document.getElementById('pie-chart');
+//     const ctx = canvas.getContext('2d');
+
+//     // Loop through slices and draw each one
+//     slices.forEach((slice) => {
+//         const angle = (slice.size / total) * Math.PI * 2;
+
+//         // Draw the slice
+//         ctx.beginPath();
+//         ctx.moveTo(canvas.width / 2, canvas.height / 2);//moves cursor to center since its a pie
+//         ctx.arc(
+//             canvas.width / 2,
+//             canvas.height / 2,
+//             canvas.width / 2,
+//             startAngle,
+//             startAngle + angle
+//         );
+//         ctx.closePath();
+//         ctx.fillStyle = slice.color;
+//         ctx.fill();
+
+//         startAngle += angle;
+//     });
+
+//     //map function to make divs to dynamically render each slices color and stats
+//     const legend = document.getElementById('pie-chart-legend');
+//     legend.innerHTML = slices.map(slice => `
+//         <div class="legend-item">
+//             <div class="legend-color" style="background-color:${slice.color}"></div>
+//             <div class="legend-label">${slice.label}: $${slice.size} - ${((slice.size / total) * 100).toFixed(2)}%</div>
+//         </div>
+//     `).join('');
+// }
+// //function to add amount THIS IS FOR TESTING
+// function addAmount(slice, amount) {
+//     slice.size += amount;
+//     showPieChart();
+// }
+
+// // Example of adding an amount
+// // addAmount(sliceC, 1000);
+
+document.addEventListener("DOMContentLoaded", () => {
+    showPieChart('pie-chart-1', slicesSet1);
+    showPieChart('pie-chart-2', slicesSet2);
+});
+
+// Define slices for the first pie chart
+let slicesSet1 = [
+    { size: 400, color: 'limegreen', label: 'Home & Utilities' },
+    { size: 150, color: 'green', label: 'Transportation' },
+    { size: 250, color: 'darkgreen', label: 'Groceries' },
+    { size: 180, color: 'darkolivegreen', label: 'Health' },
+    { size: 220, color: 'yellow', label: 'Restaurants & Dining' },
+    { size: 300, color: 'orange', label: 'Shopping & Entertainment' },
+    { size: 120, color: 'chocolate', label: 'Cash, Checks & Misc' }
+];
+
+// Define slices for the second pie chart
+let slicesSet2 = [
+    { size: 180, color: 'cornflowerblue', label: 'Payroll' },
+    { size: 220, color: 'lightblue', label: 'Checks/Misc' },
+    { size: 300, color: 'cadetblue', label: 'Other' },
+];
+
+function showPieChart(canvasId, slices) {
+    console.log(`Drawing pie chart for ${canvasId}`);
+
+    const total = slices.reduce((acc, slice) => acc + slice.size, 0);
     let startAngle = 0;
 
-    const canvas = document.getElementById('pie-chart');
+    const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
 
     // Loop through slices and draw each one
@@ -256,7 +327,7 @@ function showPieChart() {
 
         // Draw the slice
         ctx.beginPath();
-        ctx.moveTo(canvas.width / 2, canvas.height / 2);//moves cursor to center since its a pie
+        ctx.moveTo(canvas.width / 2, canvas.height / 2);
         ctx.arc(
             canvas.width / 2,
             canvas.height / 2,
@@ -271,8 +342,8 @@ function showPieChart() {
         startAngle += angle;
     });
 
-    //map function to make divs to dynamically render each slices color and stats
-    const legend = document.getElementById('pie-chart-legend');
+    // Create legend for the pie chart
+    const legend = document.getElementById(canvasId + '-legend');
     legend.innerHTML = slices.map(slice => `
         <div class="legend-item">
             <div class="legend-color" style="background-color:${slice.color}"></div>
@@ -280,68 +351,13 @@ function showPieChart() {
         </div>
     `).join('');
 }
-//function to add amount THIS IS FOR TESTING
+
+// Function to add amount for testing
 function addAmount(slice, amount) {
     slice.size += amount;
-    showPieChart();
+    showPieChart('pie-chart-1', slicesSet1); // Update first chart
+    showPieChart('pie-chart-2', slicesSet2); // Update second chart
 }
 
 // Example of adding an amount
-// addAmount(sliceC, 1000);
-
-document.addEventListener("DOMContentLoaded", showPieChart2);
-
-// Defining the slices with sizes and colors
-let sliceH = { size: 400, color: 'limegreen', label: 'Home & Utilities' };
-let sliceI = { size: 150, color: 'green', label: 'Transportation' };
-let sliceJ = { size: 250, color: 'darkgreen', label: 'Groceries' };
-
-function showPieChart2() {
-    console.log("pie-chart on load");
-
-    let slices = [sliceH, sliceI, sliceJ];
-    
-    const total2 = slices.reduce((acc, slice) => acc + slice.size, 0); //this gets all the sizes total amount
-    let startAngle = 0;
-
-    const canvas = document.getElementById('pie-chart');
-    const ctx = canvas.getContext('2d');
-
-    // Loop through slices and draw each one
-    slices.forEach((slice) => {
-        const angle = (slice.size / total2) * Math.PI * 2;
-
-        // Draw the slice
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 2, canvas.height / 2);//moves cursor to center since its a pie
-        ctx.arc(
-            canvas.width / 2,
-            canvas.height / 2,
-            canvas.width / 2,
-            startAngle,
-            startAngle + angle
-        );
-        ctx.closePath();
-        ctx.fillStyle = slice.color;
-        ctx.fill();
-
-        startAngle += angle;
-    });
-
-    //map function to make divs to dynamically render each slices color and stats
-    const legend = document.getElementById('pie-chart-legend');
-    legend.innerHTML = slices.map(slice => `
-        <div class="legend-item">
-            <div class="legend-color" style="background-color:${slice.color}"></div>
-            <div class="legend-label">${slice.label}: $${slice.size} - ${((slice.size / total) * 100).toFixed(2)}%</div>
-        </div>
-    `).join('');
-}
-//function to add amount THIS IS FOR TESTING
-function addAmount(slice, amount) {
-    slice.size += amount;
-    showPieChart();
-}
-
-// Example of adding an amount
-// addAmount(sliceC, 1000);
+// addAmount(slicesSet1[0], 1000);
